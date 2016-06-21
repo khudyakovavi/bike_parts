@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Обмен велосипедными запчастями</title>
+    </head>
+    <body>
+        {% for part in bike_parts %}
+            {{ part.name }}<br>
+        {% endfor %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if bike_parts.has_previous %}
+                    <a href="?page={{ bike_parts.previous_page_number }}">Сюда</a>
+                {% endif %}
+
+                <span class="current">
+                    {{ bike_parts.number }} из {{ bike_parts.paginator.num_pages }}.
+                </span>
+
+                {% if bike_parts.has_next %}
+                    <a href="?page={{ bike_parts.next_page_number }}">Туда</a>
+                {% endif %}
+            </span>
+        </div>
+    </body>
+</html>
