@@ -3,7 +3,7 @@ from django.forms import model_to_dict
 from django.http import JsonResponse
 from django.views.generic import View, TemplateView
 
-from parts.utils import BikePartUtils
+from .utils import BikePartUtils
 
 
 class MainView(TemplateView):
