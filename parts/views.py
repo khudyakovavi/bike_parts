@@ -1,7 +1,7 @@
 # coding: utf-8
-from django.forms import model_to_dict
-from django.http import JsonResponse
-from django.views.generic import View, TemplateView
+from __future__ import absolute_import, unicode_literals
+
+from django.views.generic import TemplateView
 
 from .utils import BikePartUtils
 
@@ -16,15 +16,3 @@ class MainView(TemplateView):
         page = self.request.GET.get('page')
         context['bike_parts'] = BikePartUtils.get_bike_parts_page(page)
         return context
-
-
-class BikePartAdView(View):
-
-    def get(self, request, *args, **kwargs):
-        fields = ['name', 'brand', 'price', 'contacts']
-        page = request.GET.get('page')
-        parts = [
-            model_to_dict(part, fields=fields)
-            for part in BikePartUtils.get_bike_parts_page(page)
-        ]
-        return JsonResponse({'parts': parts})
