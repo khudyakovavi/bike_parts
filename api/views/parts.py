@@ -38,9 +38,18 @@ class BikePartsSerializer(serializers.Serializer):
 
 class BikePartList(ListAPIView):
 
-    queryset = BikePart.objects.all()
     serializer_class = BikePartsSerializer
     pagination_class = BikePartsPagination
+
+    def get_queryset(self):
+        queryset = BikePart.objects.all()
+        name = self.request.query_params.get('name')
+        brand = self.request.query_params.get('brand')
+        if name is not None:
+            queryset = queryset.filter(name__icontains=name)
+        if brand is not None:
+            queryset = queryset.filter(brand__name__icontains=brand)
+        return queryset
 
 
 class BikePartAPIView(APIView):
