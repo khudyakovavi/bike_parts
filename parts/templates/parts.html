@@ -1,11 +1,37 @@
+{% load static from staticfiles %}
 <html>
     <head>
-        <title>Обмен велосипедными запчастями</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+        <title>Велосипедные запчасти</title>
     </head>
     <body>
+        <nav class="navbar navbar-default" style="background-color: #F2F2F2;">
+            <div class="container-fluid">
+                <a class="navbar-brand" style="color: #6b6b6b;">Велозапчасти</a>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Поиск">
+                    </div>
+                    <button type="submit" class="btn btn-default">Найти</button>
+                </form>
+            </div>
+        </nav>
+        <div class="container" style="max-width: 600px;">
         {% for part in bike_parts %}
-            {{ part.name }}<br>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>{{ part.name }} <span style="color: #afafaf;">{{ part.brand.name }}</span><span style="float: right; color: #6b6b6b;">{{ part.price }} руб.</span></h3>
+                    <hr>
+                    <p>Контакты: {{ part.contacts }}</p>
+                </div>
+            </div>
         {% endfor %}
+        </div>
 
         <div class="pagination">
             <span class="step-links">
@@ -22,5 +48,8 @@
                 {% endif %}
             </span>
         </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
     </body>
 </html>

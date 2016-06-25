@@ -11,7 +11,7 @@ class BikePartUtils(object):
     @staticmethod
     def get_bike_parts_page(page):
         bike_parts = BikePart.objects.order_by('created')
-        parts_paginator = Paginator(bike_parts, 25)
+        parts_paginator = Paginator(bike_parts, 10)
         try:
             parts = parts_paginator.page(page)
         except PageNotAnInteger:
