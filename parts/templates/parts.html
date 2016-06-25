@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load get_range %}
 <html>
     <head>
         <meta charset="utf-8">
@@ -33,21 +34,17 @@
         {% endfor %}
         </div>
 
-        <div class="pagination">
-            <span class="step-links">
-                {% if bike_parts.has_previous %}
-                    <a href="?page={{ bike_parts.previous_page_number }}">Сюда</a>
-                {% endif %}
-
-                <span class="current">
-                    {{ bike_parts.number }} из {{ bike_parts.paginator.num_pages }}.
-                </span>
-
-                {% if bike_parts.has_next %}
-                    <a href="?page={{ bike_parts.next_page_number }}">Туда</a>
-                {% endif %}
-            </span>
-        </div>
+        <nav class="text-center">
+            <ul class="pagination">
+                {% for num in bike_parts.paginator.num_pages|get_range %}
+                    {% if num == bike_parts.number %}
+                        <li class="active"><a href="">{{ num }}</a></li>
+                    {% else %}
+                        <li><a href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="{% static "js/bootstrap.min.js" %}"></script>
