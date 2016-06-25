@@ -13,16 +13,21 @@
     <body>
         <nav class="navbar navbar-default" style="background-color: #F2F2F2;">
             <div class="container-fluid">
-                <a class="navbar-brand" style="color: #6b6b6b;">Велозапчасти</a>
-                <form class="navbar-form navbar-right" role="search">
+                <a href="/" class="navbar-brand" style="color: #6b6b6b;">Велозапчасти</a>
+                <form class="navbar-form navbar-right" role="search" method="GET" action="/">
                     <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Поиск">
+                          <input type="text" class="form-control" placeholder="Поиск" name="search">
                     </div>
                     <button type="submit" class="btn btn-default">Найти</button>
                 </form>
             </div>
         </nav>
         <div class="container" style="max-width: 600px;">
+        {% if not bike_parts %}
+            <div class="text-center">
+                <p>Список объявлений пуст</p>
+            </div>
+        {% endif %}
         {% for part in bike_parts %}
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -34,17 +39,19 @@
         {% endfor %}
         </div>
 
-        <nav class="text-center">
-            <ul class="pagination">
-                {% for num in bike_parts.paginator.num_pages|get_range %}
-                    {% if num == bike_parts.number %}
-                        <li class="active"><a href="">{{ num }}</a></li>
-                    {% else %}
-                        <li><a href="?page={{ num }}">{{ num }}</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </nav>
+        {% if bike_parts.paginator.num_pages > 1 %}
+            <nav class="text-center">
+                <ul class="pagination">
+                    {% for num in bike_parts.paginator.num_pages|get_range %}
+                        {% if num == bike_parts.number %}
+                            <li class="active"><a href="">{{ num }}</a></li>
+                        {% else %}
+                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endif %}
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="{% static "js/bootstrap.min.js" %}"></script>

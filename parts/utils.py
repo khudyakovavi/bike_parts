@@ -9,8 +9,7 @@ from .models import BikePart
 class BikePartUtils(object):
 
     @staticmethod
-    def get_bike_parts_page(page):
-        bike_parts = BikePart.objects.order_by('created')
+    def get_bike_parts_page(bike_parts, page):
         parts_paginator = Paginator(bike_parts, 10)
         try:
             parts = parts_paginator.page(page)
