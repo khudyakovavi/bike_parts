@@ -1,0 +1,11 @@
+    {% include "base.html" with current_page="new_part" %}
+
+    {% block content %}
+        <div class="container">
+            <h2>Новое объявление</h2>
+            <form method="POST" class="post-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-default">Сохранить</button>
+            </form>
+        </div>
+    {% endblock %}
