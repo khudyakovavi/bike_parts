@@ -7,7 +7,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from parts.models import BikePart, BikeBrand
+from brands.models import BikeBrand
+
+from parts.models import BikePart
 
 
 class BikePartsPagination(PageNumberPagination):

@@ -4,7 +4,7 @@ from __future__ import absolute_import, unicode_literals
 from rest_framework import serializers
 from rest_framework.generics import ListAPIView
 
-from parts.models import BikeBrand
+from brands.models import BikeBrand
 
 
 class BikeBrandSerializer(serializers.Serializer):
