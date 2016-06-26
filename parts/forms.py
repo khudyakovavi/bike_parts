@@ -10,7 +10,7 @@ class BikePartForm(forms.ModelForm):
 
     brand_name = forms.CharField(required=True, max_length=100, label='Марка')
     price = forms.DecimalField(min_value=0, initial=0, decimal_places=2,
-                               max_digits=8, label='Цена', required=True)
+                               max_digits=8, label='Цена', required=False)
     phone = forms.CharField(required=False, max_length=12, label='Телефон')
     email = forms.EmailField(required=False, max_length=86)
 
