@@ -21,8 +21,9 @@ class BikePartListView(TemplateView):
         search = self.request.GET.get('search')
 
         bike_parts = BikePart.objects.order_by('-created')
-        bike_parts = bike_parts.prefetch_related('brand')
+        bike_parts = bike_parts.select_related('brand')
         if search:
+            # Поиск по имени детали или по марке
             bike_parts = bike_parts.filter(
                 Q(name__icontains=search) | Q(brand__name__icontains=search)
             )

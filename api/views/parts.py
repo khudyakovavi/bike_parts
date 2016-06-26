@@ -52,6 +52,7 @@ class BikePartList(ListAPIView):
         queryset = BikePart.objects.all()
         name = self.request.query_params.get('name')
         brand = self.request.query_params.get('brand')
+        # Отдельный поиск по имени детали или по марке
         if name is not None:
             queryset = queryset.filter(name__icontains=name)
         if brand is not None:
