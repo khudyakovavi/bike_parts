@@ -1,0 +1,1 @@
+export DJANGO_SETTINGS_MODULE=bike_parts.settings.local
