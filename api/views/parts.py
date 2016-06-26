@@ -7,12 +7,13 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from common.constants import PAGE_SIZE
 from parts.models import BikePart
 
 
 class BikePartsPagination(PageNumberPagination):
 
-    page_size = 10
+    page_size = PAGE_SIZE
 
 
 class BikePartsSerializer(serializers.Serializer):
