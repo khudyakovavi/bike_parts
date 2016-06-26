@@ -1,0 +1,24 @@
+{% include "base.html" with current_page="stats" %}
+{% load get_range %}
+
+    {% block content %}
+        <div class="container" style="max-width: 600px;">
+        {% if bike_brands %}
+            <h3>Популярные марки:</h3>
+        {% else %}
+            <div class="text-center">
+                <p>Список марок пуст</p>
+            </div>
+        {% endif %}
+        {% for brand in bike_brands %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>{{ brand.name }}</h3>
+                    <hr>
+                    <p>Количество запчастей: {{ brand.parts_qty }} шт.</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+    {% endblock %}
