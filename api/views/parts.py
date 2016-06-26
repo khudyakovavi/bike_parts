@@ -7,8 +7,6 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from brands.models import BikeBrand
-
 from parts.models import BikePart
 
 
@@ -20,21 +18,27 @@ class BikePartsPagination(PageNumberPagination):
 class BikePartsSerializer(serializers.Serializer):
 
     name = serializers.CharField(max_length=256)
-    brand = serializers.CharField(max_length=100)
-    price = serializers.DecimalField(decimal_places=2, max_digits=8)
-    contacts = serializers.CharField(max_length=100)
+    brand_name = serializers.CharField(max_length=100, write_only=True)
+    brand = serializers.CharField(max_length=100, read_only=True)
+    price = serializers.DecimalField(decimal_places=2, max_digits=8,
+                                     min_value=0)
+    contacts = serializers.CharField(max_length=100, read_only=True)
+    email = serializers.EmailField(max_length=86, required=False,
+                                   write_only=True)
+    phone = serializers.CharField(max_length=12, required=False,
+                                  write_only=True)
 
     class Meta:
         model = BikePart
         fields = ['name', 'brand', 'price', 'contacts']
 
+    def validate(self, data):
+        if not any([data.get('phone'), data.get('email')]):
+            raise serializers.ValidationError('Должно быть заполнено хотя бы '
+                                              'одно поле с контактами.')
+        return super(BikePartsSerializer, self).validate(data)
+
     def create(self, validated_data):
-        brand_name = validated_data.get('brand')
-        brand = BikeBrand.objects.filter(name=brand_name).first()
-        if brand is None:
-            brand = BikeBrand(name=brand_name)
-            brand.save()
-        validated_data['brand'] = brand
         return BikePart.objects.create(**validated_data)
 
 
