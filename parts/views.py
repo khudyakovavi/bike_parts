@@ -3,7 +3,6 @@ from __future__ import absolute_import, unicode_literals
 
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic import TemplateView, FormView
 
 from parts.forms import BikePartForm
