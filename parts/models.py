@@ -12,6 +12,7 @@ from brands.models import BikeBrand
 class BikePartManager(models.Manager):
 
     def create(self, **kwargs):
+        kwargs.setdefault('price', 0)
         brand_name = kwargs.get('brand_name')
         brand = BikeBrand.objects.filter(name=brand_name).first()
         if brand is None:

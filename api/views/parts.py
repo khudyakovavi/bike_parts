@@ -21,7 +21,7 @@ class BikePartsSerializer(serializers.Serializer):
     brand_name = serializers.CharField(max_length=100, write_only=True)
     brand = serializers.CharField(max_length=100, read_only=True)
     price = serializers.DecimalField(decimal_places=2, max_digits=8,
-                                     min_value=0)
+                                     min_value=0, required=False)
     contacts = serializers.CharField(max_length=100, read_only=True)
     email = serializers.EmailField(max_length=86, required=False,
                                    write_only=True)
