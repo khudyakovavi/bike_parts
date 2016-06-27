@@ -1,3 +1,21 @@
+### Установка
+1. Установка виртуального окружения:
+  - `virtualenv .env`
+  - `source .env/bin/activate`
+  - `pip install -r requirements/local.txt`
+2. Задать переменную окружения DJANGO_SETTINGS_MODULE:
+  - `source postactivate`
+3. Применить миграции
+  - `python manage.py migrate`
+
+### Запуск
+1. Задать переменную окружения DJANGO_SETTINGS_MODULE:
+  - `source postactivate`
+2. Запуск сервера:
+  - `python manage.py runserver`
+
+### API
+
 API для мобильных устройств, со следующими командами:
 
 1. `GET api/parts/`
