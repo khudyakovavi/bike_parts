@@ -31,6 +31,7 @@ class BikePartListView(TemplateView):
         context['bike_parts'] = BikePartUtils.get_bike_parts_page(
             bike_parts, page
         )
+        context['current_page'] = "main"
         return context
 
 
