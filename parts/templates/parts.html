@@ -11,9 +11,14 @@
         {% for part in bike_parts %}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>{{ part.name }} <span style="color: #afafaf;">{{ part.brand.name }}</span><span style="float: right; color: #6b6b6b;">{{ part.price }} руб.</span></h3>
-                    <hr>
-                    <p>Контакты: {{ part.contacts }}</p>
+                    <div class="b-title b-header">{{ part.name }}</div>
+                    <div class="b-brand b-header">{{ part.brand.name }}</div>
+                    <div class="b-price b-header">{{ part.price }} руб.</div>
+                    <div style="clear: both;"></div>
+                    <div class="b-contacts">
+                        <hr />
+                        Контакты: {{ part.contacts }}
+                    </div>
                 </div>
             </div>
         {% endfor %}

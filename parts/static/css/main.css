@@ -1,0 +1,19 @@
+.b-header {
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.b-title {
+    float: left;
+}
+
+.b-brand {
+    color: #afafaf;
+    float: left;
+    margin-left: 10px;
+}
+
+.b-price {
+    float: right;
+    color: #6b6b6b;
+}
